@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc"
   },
   "author": "Guilherme Freire",
   "license": "MIT",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "http-status-codes": "^2.3.0"
   },
