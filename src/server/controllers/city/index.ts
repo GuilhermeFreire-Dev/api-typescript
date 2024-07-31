@@ -4,7 +4,7 @@ import * as getAll from "./GetAll";
 import * as getById from "./GetById";
 import * as updateById from "./UpdateById";
 
-export const CitiesController = {
+export const CityController = {
   ...create,
   ...deleteById,
   ...getAll,

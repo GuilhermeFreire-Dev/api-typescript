@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CitiesController } from "../controllers";
+import { CityController } from "../controllers";
 
 const router = Router();
 
@@ -7,10 +7,10 @@ router.get("/", (_, res) => {
   res.send("Olá mundo");
 });
 
-router.post("/cidades", CitiesController.createValidation, CitiesController.create);
-router.get("/cidades", CitiesController.getAllValidation, CitiesController.getAll);
-router.get("/cidades/:id", CitiesController.getByIdValidation, CitiesController.getById);
-router.put("/cidades/:id", CitiesController.updateByIdValidation, CitiesController.updateById);
-router.delete("/cidades/:id", CitiesController.deleteByIdValidation, CitiesController.deleteById);
+router.post("/cidades", CityController.createValidation, CityController.create);
+router.get("/cidades", CityController.getAllValidation, CityController.getAll);
+router.get("/cidades/:id", CityController.getByIdValidation, CityController.getById);
+router.put("/cidades/:id", CityController.updateByIdValidation, CityController.updateById);
+router.delete("/cidades/:id", CityController.deleteByIdValidation, CityController.deleteById);
 
 export { router };
