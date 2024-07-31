@@ -7,6 +7,6 @@ router.get("/", (_, res) => {
   res.send("Olá mundo");
 });
 
-router.post("/cities", CitiesController.create);
+router.post("/cities", CitiesController.createValidation, CitiesController.create);
 
 export { router };
