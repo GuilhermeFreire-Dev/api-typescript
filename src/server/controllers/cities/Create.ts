@@ -2,18 +2,16 @@ import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware/Validation";
 
-interface ICity {
+interface IBodyProps {
   nome: string,
-  estado: string
 }
 
 export const createValidation = validation((getSchema) => ({
-  body: getSchema<ICity>(yup.object().shape({
-    nome: yup.string().required().min(3),
-    estado: yup.string().required().min(3)
+  body: getSchema<IBodyProps>(yup.object().shape({
+    nome: yup.string().required().min(3)
   }))
 }));
 
-export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
+export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
   return res.json(req.body);
 }
