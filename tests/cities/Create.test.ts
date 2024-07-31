@@ -14,7 +14,7 @@ describe('Cidades - Create', () => {
 
   });
 
-  it('Tentar criar uma cidade com nome inválido', async () => {
+  it('Validar cidade com nome curto', async () => {
     const res = await testServer.post('/cidades').send({
       nome: 'ci'
     });
