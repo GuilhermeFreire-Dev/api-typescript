@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware/Validation";
+import { StatusCodes } from "http-status-codes";
 
 interface IBodyProps {
   nome: string,
@@ -13,5 +14,8 @@ export const createValidation = validation((getSchema) => ({
 }));
 
 export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
-  return res.json(req.body);
+  return res.status(StatusCodes.CREATED).json({
+    id: 1,
+    nome: req.body.nome
+  });
 }
