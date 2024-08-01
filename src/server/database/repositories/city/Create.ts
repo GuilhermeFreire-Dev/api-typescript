@@ -1,4 +1,4 @@
-import { AppDataSource } from "../../data-source"
+import { AppDataSource } from "../.."
 import { City } from "../../entity"
 
 export const create = async (city: Omit<City, 'id'>) => {

@@ -9,14 +9,14 @@ interface IBodyProps extends Omit<City, 'id'> {}
 
 export const createValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
-    name: yup.string().required().min(3)
+    nome: yup.string().required().min(3)
   }))
 }));
 
 export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
 
   const city = await CityRepository.create({
-    name: req.body.name
+    nome: req.body.nome
   });
 
   return res.status(StatusCodes.CREATED).json(city);

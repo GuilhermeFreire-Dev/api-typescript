@@ -1,10 +1,15 @@
-import { AppDataSource } from "./data-source";
+import { DataSource } from "typeorm";
 
-AppDataSource.initialize()
-.then(() => {
-  console.log('Database has initialized');
-  
-})
-.catch((error) => console.log(error))
-
-export { AppDataSource };
+export const AppDataSource = new DataSource({
+  type: "postgres",
+  host: process.env.DB_HOST,
+  port: 5432,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  synchronize: true,
+  logging: false,
+  entities: ["src/server/database/entity/*.ts"],
+  subscribers: [],
+  migrations: [],
+});
