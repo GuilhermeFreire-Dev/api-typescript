@@ -5,7 +5,6 @@ import "./database";
 
 const server = express();
 
-// server.use(AppDataSource)
 server.use(express.json());
 server.use(router);
 

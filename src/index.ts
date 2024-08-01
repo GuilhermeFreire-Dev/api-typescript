@@ -1,5 +1,5 @@
-import { server } from "./server/Server";
 import "dotenv/config";
+import { server } from "./server/Server";
 import "reflect-metadata";
 
 server.listen(process.env.PORT || 3333, () => {
