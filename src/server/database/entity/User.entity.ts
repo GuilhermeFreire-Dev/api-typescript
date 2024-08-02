@@ -15,12 +15,6 @@ export class User {
   @Column()
   senha!: string;
 
-  @Column({nullable: true})
-  token?:string;
-
-  @Column({nullable: true})
-  data_exp?: Date;
-
   @CreateDateColumn()
   data_cria?: Date;
 
