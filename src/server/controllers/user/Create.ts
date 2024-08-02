@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { UserRepository } from "../../database/repositories";
 import { StatusCodes } from "http-status-codes";
 
-interface IBodyProps extends Omit<User, 'id'> {}
+interface IBodyProps extends Omit<User, "id"> { }
 
 export const createValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
@@ -22,5 +22,21 @@ export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
     senha: req.body.senha
   });
 
-  return res.status(StatusCodes.CREATED).json(user);
-}
+  if (user instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      error: {
+        default: user.message
+      }
+    });
+  }
+
+  const userFiltered: Record<string, string | number | Date> = {};
+
+  Object.entries(user).forEach(([key, value]) => {
+    if (key !== "senha" && key !== "token" && key !== "data_exp") {
+      userFiltered[key] = value;
+    }
+  });
+
+  return res.status(StatusCodes.CREATED).json(userFiltered);
+};

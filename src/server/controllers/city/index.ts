@@ -10,4 +10,4 @@ export const CityController = {
   ...getAll,
   ...getById,
   ...updateById
-}
+};

@@ -15,7 +15,7 @@ type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler;
 export const validation: TValidation = (getAllSchemas) => async (req, res, next) => {
   
   const schemas = getAllSchemas((schemas) => schemas);
-  const validationErrors: Record<string, Record<string, string>> = {}
+  const validationErrors: Record<string, Record<string, string>> = {};
 
   Object.entries(schemas).forEach(([key, schema]) => {
     try {
@@ -39,4 +39,4 @@ export const validation: TValidation = (getAllSchemas) => async (req, res, next)
   return res.status(StatusCodes.BAD_REQUEST).json({
     errors: validationErrors 
   });
-}
+};

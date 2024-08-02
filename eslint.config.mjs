@@ -10,7 +10,9 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      "@typescript-eslint/ban-types": "off"
+      "@typescript-eslint/ban-types": "off",
+      "quotes": ["error", "double"],
+      "semi": ["error", "always"],
     }
   }
 ];

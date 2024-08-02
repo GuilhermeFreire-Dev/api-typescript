@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import { City } from "../../database/entity";
 import { CityRepository } from "../../database/repositories";
 
-interface IBodyProps extends Omit<City, 'id'> {}
+interface IBodyProps extends Omit<City, "id"> {}
 
 export const createValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
@@ -20,4 +20,4 @@ export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
   });
 
   return res.status(StatusCodes.CREATED).json(city);
-}
+};

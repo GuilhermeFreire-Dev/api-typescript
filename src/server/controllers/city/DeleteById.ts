@@ -14,5 +14,5 @@ export const deleteByIdValidation = validation((getSchema) => ({
 }));
 
 export const deleteById = async (req: Request<IParamProps>, res: Response) => {
-  return res.status(StatusCodes.NOT_IMPLEMENTED).send('Não implementado');
-}
+  return res.status(StatusCodes.NOT_IMPLEMENTED).send("Não implementado");
+};

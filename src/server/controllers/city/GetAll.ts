@@ -20,4 +20,4 @@ export const getAllValidation = validation((getSchema) => ({
 
 export const getAll = async (req: Request<{}, {}, {}, IQueryParams>, res: Response) => {
   return res.json(await CityRepository.getAll());
-}
+};

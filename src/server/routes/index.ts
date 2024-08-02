@@ -14,7 +14,7 @@ router.get("/cidades/:id", CityController.getByIdValidation, CityController.getB
 router.put("/cidades/:id", CityController.updateByIdValidation, CityController.updateById);
 router.delete("/cidades/:id", CityController.deleteByIdValidation, CityController.deleteById);
 
-router.post("/sign-up", UserController.createValidation, UserController.create);
-
+router.post("/cadastrar", UserController.createValidation, UserController.create);
+router.post("/login", UserController.loginValidation, UserController.login);
 
 export { router };
