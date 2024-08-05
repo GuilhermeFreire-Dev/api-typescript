@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../../database/entity";
+import { User } from "../../database/entities";
 import { validation } from "../../shared/middleware/Validation";
 import * as yup from "yup";
 import { UserRepository } from "../../database/repositories";

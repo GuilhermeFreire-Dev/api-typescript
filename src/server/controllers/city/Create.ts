@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware/Validation";
 import { StatusCodes } from "http-status-codes";
-import { City } from "../../database/entity";
+import { City } from "../../database/entities";
 import { CityRepository } from "../../database/repositories";
 
 interface IBodyProps extends Omit<City, "id"> {}

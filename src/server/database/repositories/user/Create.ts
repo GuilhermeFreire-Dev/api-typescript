@@ -1,7 +1,7 @@
 // import { QueryFailedError } from "typeorm";
 import { AppDataSource } from "../..";
 import { PasswordCrypto } from "../../../shared/services";
-import { User } from "../../entity";
+import { User } from "../../entities";
 
 export const create = async (user: Omit<User, "id">): Promise<User | Error> => {
   try {

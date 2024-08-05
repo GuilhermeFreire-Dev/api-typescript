@@ -1,6 +1,6 @@
 
 import { AppDataSource } from "../..";
-import { User } from "../../entity";
+import { User } from "../../entities";
 
 export const getByEmail = async (email: string): Promise<User | null | Error> => {
   try {
