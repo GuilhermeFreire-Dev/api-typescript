@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import { ERepositoryErrors, RepositoryError } from "../../shared/exceptions/RepositoryError";
 import { StudentRepository } from "../../database/repositories/aluno";
 import { Aluno } from "../../database/entities/Aluno.entity";
+import { UserRepository } from "../../database/repositories";
 
 interface IBodyProps extends Omit<Aluno, "id"> { }
 
@@ -34,6 +35,24 @@ export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
       }
     });
   }
+
+  const user = await UserRepository.create({
+    senha: student.cpf
+  });
+
+  if (user instanceof RepositoryError) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: user.message
+      }
+    });
+  }
+
+  student.usuario = user;
+
+  StudentRepository.update(student);
+
+  delete student.usuario;
   
   return res.status(StatusCodes.CREATED).json(student);
 };

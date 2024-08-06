@@ -1,7 +1,8 @@
 
 export enum ERepositoryErrors {
   "DATABASE_ERROR",
-  "DATABASE_CONSTRAINT_ERROR"
+  "DATABASE_CONSTRAINT_ERROR",
+  "NOT_FOUND"
 }
 
 export class RepositoryError extends Error {

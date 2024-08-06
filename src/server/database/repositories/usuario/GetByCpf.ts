@@ -20,7 +20,9 @@ export const getByCpf = async (cpf: string): Promise<Usuario | undefined | Error
     
     return searchedUser.usuario;
 
-  } catch (error) {    
+  } catch (error) { 
+    console.log(error);
+    
     return new Error("Ocorreu um erro ao cadastrar o usuário");
   }
 };
