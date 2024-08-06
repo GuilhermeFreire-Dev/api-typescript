@@ -2,12 +2,9 @@ import {
   Column, 
   CreateDateColumn, 
   Entity, 
-  JoinColumn, 
-  OneToOne, 
   PrimaryGeneratedColumn, 
   UpdateDateColumn 
 } from "typeorm";
-import { Pessoa } from "./Pessoa.entity";
 
 @Entity()
 export class Usuario {
@@ -17,10 +14,6 @@ export class Usuario {
 
   @Column()
   senha!: string;
-
-  @OneToOne(() => Pessoa)
-  @JoinColumn()
-  pessoa!: Pessoa;
 
   @CreateDateColumn()
   dataCria?: Date;

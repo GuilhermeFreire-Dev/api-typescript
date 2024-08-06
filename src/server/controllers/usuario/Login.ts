@@ -1,23 +1,24 @@
 import { Request, Response } from "express";
-import { User } from "../../database/entities";
+import { Usuario } from "../../database/entities";
 import { validation } from "../../shared/middleware/Validation";
 import * as yup from "yup";
 import { UserRepository } from "../../database/repositories";
 import { StatusCodes } from "http-status-codes";
 import { JwtService, PasswordCrypto } from "../../shared/services";
 import { EJwtErrors, JwtError } from "../../shared/exceptions/JwtError";
+import { Pessoa } from "../../database/entities/Pessoa.entity";
 
-interface IBodyProps extends Omit<User, "id" | "nome"> { }
+interface IBodyProps extends Pick<Pessoa, "cpf">, Pick<Usuario, "senha"> { }
 
 export const loginValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
-    email: yup.string().required().email(),
+    cpf: yup.string().required(),
     senha: yup.string().required()
   }))
 }));
 
 export const login = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
-  const user = await UserRepository.getByEmail(req.body.email);
+  const user = await UserRepository.getByCpf(req.body.cpf);
 
   if (!user) {
     return res.status(StatusCodes.NOT_FOUND).json({

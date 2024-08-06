@@ -1,7 +1,7 @@
 import { create } from "./Create";
-import { getByEmail } from "./GetByEmail";
+import { getByCpf } from "./GetByCpf";
 
 export const UserRepository = {
   create,
-  getByEmail,
+  getByCpf,
 };

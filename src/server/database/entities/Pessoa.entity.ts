@@ -8,6 +8,7 @@ import {
   UpdateDateColumn 
 } from "typeorm";
 import { Endereco } from "./Endereco.entity";
+import { Usuario } from "./Usuario.entity";
 
 @Entity()
 export class Pessoa {
@@ -18,6 +19,10 @@ export class Pessoa {
   @OneToOne(() => Endereco)
   @JoinColumn()
   endereco?: Endereco;
+
+  @OneToOne(() => Usuario)
+  @JoinColumn()
+  usuario?: Usuario;
 
   @Column()
   nome!: string;
