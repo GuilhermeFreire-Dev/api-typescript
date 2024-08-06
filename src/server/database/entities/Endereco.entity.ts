@@ -1,7 +1,13 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+  Column, 
+  CreateDateColumn, 
+  Entity, 
+  PrimaryGeneratedColumn, 
+  UpdateDateColumn 
+} from "typeorm";
 
-@Entity({ name: "endereco" })
-export class Address {
+@Entity()
+export class Endereco {
 
   @PrimaryGeneratedColumn()
   id!: number;
@@ -28,8 +34,8 @@ export class Address {
   estado!: string;
 
   @CreateDateColumn()
-  data_cria?: Date;
+  dataCria?: Date;
 
   @UpdateDateColumn()
-  data_alt?: Date;
+  dataAlt?: Date;
 }
