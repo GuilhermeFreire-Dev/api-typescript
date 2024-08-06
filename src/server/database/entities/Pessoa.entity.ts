@@ -1,7 +1,6 @@
 import { 
   Column, 
   CreateDateColumn, 
-  Entity, 
   JoinColumn, 
   OneToOne, 
   PrimaryGeneratedColumn, 
@@ -10,7 +9,6 @@ import {
 import { Endereco } from "./Endereco.entity";
 import { Usuario } from "./Usuario.entity";
 
-@Entity()
 export class Pessoa {
 
   @PrimaryGeneratedColumn()
@@ -37,10 +35,10 @@ export class Pessoa {
   email!: string;
 
   @Column()
-  telefonePrincipal!: number;
+  telefonePrincipal!: string;
 
-  @Column()
-  telefoneSecundario?: number;
+  @Column({ nullable: true })
+  telefoneSecundario?: string;
 
   @CreateDateColumn()
   dataCria?: Date;

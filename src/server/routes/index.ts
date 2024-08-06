@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { CityController } from "../controllers";
-import { UserController } from "../controllers/user";
 import { authentication } from "../shared/middleware";
+import { UserController } from "../controllers/usuario";
+import { StudentController } from "../controllers/aluno";
 
 const router = Router();
 
@@ -14,6 +15,8 @@ router.get("/cidades", authentication, CityController.getAllValidation, CityCont
 router.get("/cidades/:id", authentication, CityController.getByIdValidation, CityController.getById);
 router.put("/cidades/:id", authentication, CityController.updateByIdValidation, CityController.updateById);
 router.delete("/cidades/:id", authentication, CityController.deleteByIdValidation, CityController.deleteById);
+
+router.post("/alunos", StudentController.createValidation, StudentController.create);
 
 router.post("/cadastrar", UserController.createValidation, UserController.create);
 router.post("/login", UserController.loginValidation, UserController.login);

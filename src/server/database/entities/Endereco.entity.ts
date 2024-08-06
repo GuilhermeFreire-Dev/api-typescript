@@ -13,7 +13,7 @@ export class Endereco {
   id!: number;
 
   @Column()
-  cep!: number;
+  cep!: string;
 
   @Column()
   logradouro!: string;
