@@ -1,22 +1,14 @@
-import { CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+  Entity, 
+  OneToMany, 
+} from "typeorm";
 import { Disciplina } from "./Disciplina.entity";
+import { Pessoa } from "./Pessoa.entity";
 
 @Entity()
-export class Professor {
-
-  @PrimaryGeneratedColumn()
-  id!: number;
-
-  @OneToOne(() => Professor)
-  @JoinColumn()
-  pessoa!: Professor;
+export class Professor extends Pessoa {
 
   @OneToMany(() => Disciplina, (disciplina) => disciplina.professor)
   disciplinas?: Disciplina[];
 
-  @CreateDateColumn()
-  dataCria?: Date;
-
-  @UpdateDateColumn()
-  dataAlt?: Date;
 }

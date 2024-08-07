@@ -3,6 +3,7 @@ import { CityController } from "../controllers";
 import { authentication } from "../shared/middleware";
 import { UserController } from "../controllers/usuario";
 import { StudentController } from "../controllers/aluno";
+import { TeacherController } from "../controllers/professor";
 
 const router = Router();
 
@@ -17,6 +18,9 @@ router.put("/cidades/:id", authentication, CityController.updateByIdValidation, 
 router.delete("/cidades/:id", authentication, CityController.deleteByIdValidation, CityController.deleteById);
 
 router.post("/alunos", StudentController.createValidation, StudentController.create);
+
+router.post("/professores", TeacherController.createValidation, TeacherController.create);
+router.put("/professores/:id", TeacherController.updateValidation, TeacherController.update);
 
 router.post("/cadastrar", UserController.createValidation, UserController.create);
 router.post("/login", UserController.loginValidation, UserController.login);
