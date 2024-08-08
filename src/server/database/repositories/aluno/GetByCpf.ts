@@ -1,0 +1,33 @@
+import { AppDataSource } from "../..";
+import {
+  ERepositoryErrors,
+  RepositoryError,
+} from "../../../shared/exceptions/RepositoryError";
+import { Aluno } from "../../entities/Aluno.entity";
+
+export const getByCpf = async (
+  cpf: string
+): Promise<Aluno | RepositoryError> => {
+  try {
+    const student = await AppDataSource.getRepository(Aluno).findOne({
+      where: { cpf: cpf },
+      relations: {
+        usuario: true,
+      },
+    });
+
+    if (!student) {
+      return new RepositoryError(
+        "Nenhum registro encontrado",
+        ERepositoryErrors.NOT_FOUND
+      );
+    }
+
+    return student;
+  } catch (error) {
+    return new RepositoryError(
+      "Ocorreu um erro ao buscar os dados do(a) aluno(a)",
+      ERepositoryErrors.DATABASE_ERROR
+    );
+  }
+};

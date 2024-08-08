@@ -28,6 +28,13 @@ export const update = async (
 
     return studentUpdated;
   } catch (error) {
+    const err = error as Error;
+    if (err.message.includes("unique")) {
+      return new RepositoryError(
+        "Aluno(a) já cadastrado na base de dados",
+        ERepositoryErrors.DATABASE_CONSTRAINT_ERROR
+      );
+    }
     return new RepositoryError(
       "Ocorreu um erro ao atualizar os dados do(a) aluno(a)",
       ERepositoryErrors.DATABASE_ERROR

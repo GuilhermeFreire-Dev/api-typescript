@@ -1,6 +1,7 @@
 import { create } from "./Create";
 import { deleteById } from "./DeleteById";
 import { getAll } from "./GetAll";
+import { getByCpf } from "./GetByCpf";
 import { getById } from "./GetById";
 import { update } from "./Update";
 
@@ -10,4 +11,5 @@ export const StudentRepository = {
   deleteById,
   getById,
   getAll,
+  getByCpf,
 };

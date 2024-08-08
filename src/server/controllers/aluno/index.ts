@@ -4,10 +4,10 @@ import * as deleteById from "./DeleteById";
 import * as getByIdId from "./GetById";
 import * as getAll from "./GetAll";
 
-export const TeacherController = {
+export const StudentController = {
   ...create,
   ...update,
   ...deleteById,
   ...getByIdId,
-  ...getAll
+  ...getAll,
 };

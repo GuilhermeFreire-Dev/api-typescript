@@ -2,34 +2,40 @@ import { Request, Response } from "express";
 import { validation } from "../../shared/middleware/Validation";
 import * as yup from "yup";
 import { StatusCodes } from "http-status-codes";
-import { ERepositoryErrors, RepositoryError } from "../../shared/exceptions/RepositoryError";
-import { TeacherRepository } from "../../database/repositories/professor";
+import {
+  ERepositoryErrors,
+  RepositoryError,
+} from "../../shared/exceptions/RepositoryError";
+import { StudentRepository } from "../../database/repositories/aluno";
 
 interface IParamProps {
-  id?: number
+  id?: number;
 }
 
 export const deleteByIdValidation = validation((getSchema) => ({
-  params: getSchema<IParamProps>(yup.object().shape({
-    id: yup.number().required().moreThan(0)
-  }))
+  params: getSchema<IParamProps>(
+    yup.object().shape({
+      id: yup.number().required().moreThan(0),
+    })
+  ),
 }));
 
 export const deleteById = async (req: Request<IParamProps>, res: Response) => {
+  const student = await StudentRepository.deleteById(req.params.id!);
 
-  const teacher = await TeacherRepository.deleteById(req.params.id!);
-
-  if (teacher instanceof RepositoryError) {
-    return res.status(
-      teacher.errorType === ERepositoryErrors.DATABASE_ERROR ?
-      StatusCodes.INTERNAL_SERVER_ERROR :
-      StatusCodes.NOT_FOUND
-    ).json({
-      errors: {
-        default: teacher.message
-      }
-    });
+  if (student instanceof RepositoryError) {
+    return res
+      .status(
+        student.errorType === ERepositoryErrors.DATABASE_ERROR
+          ? StatusCodes.INTERNAL_SERVER_ERROR
+          : StatusCodes.NOT_FOUND
+      )
+      .json({
+        errors: {
+          default: student.message,
+        },
+      });
   }
 
-  return res.status(StatusCodes.OK).json(teacher);
+  return res.status(StatusCodes.OK).json(student);
 };
