@@ -9,6 +9,12 @@ import {
 import { Endereco } from "./Endereco.entity";
 import { Usuario } from "./Usuario.entity";
 
+export enum EStatus {
+  ATIVO = "ativo",
+  INATIVO = "inativo",
+  SUSPENSO = "suspenso",
+}
+
 export class Pessoa {
 
   @PrimaryGeneratedColumn()
@@ -39,6 +45,9 @@ export class Pessoa {
 
   @Column({ nullable: true })
   telefoneSecundario?: string;
+
+  @Column({ type: "enum", enum: EStatus, default: EStatus.ATIVO})
+  status?: EStatus;
 
   @CreateDateColumn()
   dataCria?: Date;

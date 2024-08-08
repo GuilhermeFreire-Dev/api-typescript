@@ -20,7 +20,10 @@ router.delete("/cidades/:id", authentication, CityController.deleteByIdValidatio
 router.post("/alunos", StudentController.createValidation, StudentController.create);
 
 router.post("/professores", TeacherController.createValidation, TeacherController.create);
+router.get("/professores", TeacherController.getAllValidation, TeacherController.getAll);
 router.put("/professores/:id", TeacherController.updateValidation, TeacherController.update);
+router.delete("/professores/:id", TeacherController.deleteByIdValidation, TeacherController.deleteById);
+router.get("/professores/:id", TeacherController.getByIdIdValidation, TeacherController.getByIdId);
 
 router.post("/cadastrar", UserController.createValidation, UserController.create);
 router.post("/login", UserController.loginValidation, UserController.login);

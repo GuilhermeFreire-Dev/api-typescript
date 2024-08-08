@@ -1,14 +1,17 @@
 import { AppDataSource } from "../..";
 import { ERepositoryErrors, RepositoryError } from "../../../shared/exceptions/RepositoryError";
+import { EStatus } from "../../entities/Pessoa.entity";
 import { Professor } from "../../entities/Professor.entity";
 
-export const update = async (teacher: Professor): Promise<Professor | RepositoryError> => {
+export const deleteById = async (id: number): Promise<Professor | RepositoryError> => {
   try {
 
     const updateResult = await AppDataSource.getRepository(Professor)
     .createQueryBuilder()
-    .update(teacher)
-    .where("id = :id", { id: teacher.id })
+    .update({
+      status: EStatus.INATIVO
+    })
+    .where("id = :id", { id: id })
     .returning("*")
     .execute();
 
