@@ -9,5 +9,5 @@ export const TeacherRepository = {
   update,
   deleteById,
   getById,
-  getAll
+  getAll,
 };

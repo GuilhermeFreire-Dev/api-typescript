@@ -3,13 +3,19 @@ import { validation } from "../../shared/middleware/Validation";
 import * as yup from "yup";
 import { StatusCodes } from "http-status-codes";
 import { ERepositoryErrors, RepositoryError } from "../../shared/exceptions/RepositoryError";
-import { UserRepository } from "../../database/repositories";
 import { Professor } from "../../database/entities/Professor.entity";
 import { TeacherRepository } from "../../database/repositories/professor";
 
+interface IParamProps {
+  id?: number
+}
+
 interface IBodyProps extends Omit<Professor, "id"> { }
 
-export const createValidation = validation((getSchema) => ({
+export const updateValidation = validation((getSchema) => ({
+  params: getSchema<IParamProps>(yup.object().shape({
+    id: yup.number().required().moreThan(0)
+  })),
   body: getSchema<IBodyProps>(yup.object().shape({
     cpf: yup.string().required().length(11),
     nome: yup.string().required().min(3),
@@ -20,9 +26,9 @@ export const createValidation = validation((getSchema) => ({
   }))
 }));
 
-export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
+export const update = async (req: Request<IParamProps, {}, IBodyProps>, res: Response) => {
 
-  const teacher = await TeacherRepository.create(req.body);
+  const teacher = await TeacherRepository.update({ ...req.body, id: req.params.id! });
 
   if (teacher instanceof RepositoryError) {
     return res.status(
@@ -36,23 +42,5 @@ export const create = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
     });
   }
 
-  const user = await UserRepository.create({
-    senha: teacher.cpf
-  });
-
-  if (user instanceof RepositoryError) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: user.message
-      }
-    });
-  }
-
-  teacher.usuario = user;
-
-  TeacherRepository.update(teacher);
-
-  delete teacher.usuario;
-  
-  return res.status(StatusCodes.CREATED).json(teacher);
+  return res.status(StatusCodes.OK).json(teacher);
 };

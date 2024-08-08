@@ -1,9 +1,13 @@
 import { create } from "./Create";
-import { findByCpf } from "./FindByCpf";
+import { deleteById } from "./DeleteById";
+import { getAll } from "./GetAll";
+import { getById } from "./GetById";
 import { update } from "./Update";
 
 export const StudentRepository = {
   create,
   update,
-  findByCpf,
+  deleteById,
+  getById,
+  getAll,
 };

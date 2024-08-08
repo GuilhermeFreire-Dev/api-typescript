@@ -9,5 +9,5 @@ export const TeacherController = {
   ...update,
   ...deleteById,
   ...getByIdId,
-  ...getAll
+  ...getAll,
 };

@@ -3,15 +3,15 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../../shared/exceptions/RepositoryError";
+import { Aluno } from "../../entities/Aluno.entity";
 import { EStatus } from "../../entities/Pessoa.entity";
-import { Professor } from "../../entities/Professor.entity";
 
 export const deleteById = async (
   id: number
-): Promise<Professor | RepositoryError> => {
+): Promise<Aluno | RepositoryError> => {
   try {
     const updateResult = await AppDataSource.createQueryBuilder()
-      .update(Professor)
+      .update(Aluno)
       .set({
         status: EStatus.INATIVO,
       })
@@ -19,20 +19,20 @@ export const deleteById = async (
       .returning("*")
       .execute();
 
-    const raws = updateResult.raw as Professor[];
-    const teacherUpdated = raws.shift();
+    const raws = updateResult.raw as Aluno[];
+    const studentUpdated = raws.shift();
 
-    if (!teacherUpdated) {
+    if (!studentUpdated) {
       return new RepositoryError(
         "Nenhum registro encontrado para atualizar",
         ERepositoryErrors.NOT_FOUND
       );
     }
 
-    return teacherUpdated;
+    return studentUpdated;
   } catch (error) {
     return new RepositoryError(
-      "Ocorreu um erro ao atualizar os dados do(a) professor(a)",
+      "Ocorreu um erro ao atualizar os dados do(a) aluno(a)",
       ERepositoryErrors.DATABASE_ERROR
     );
   }

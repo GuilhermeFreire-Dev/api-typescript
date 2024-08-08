@@ -3,27 +3,25 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../../shared/exceptions/RepositoryError";
-import { Professor } from "../../entities/Professor.entity";
+import { Aluno } from "../../entities/Aluno.entity";
 
-export const getById = async (
-  id: number
-): Promise<Professor | RepositoryError> => {
+export const getById = async (id: number): Promise<Aluno | RepositoryError> => {
   try {
-    const teacher = await AppDataSource.getRepository(Professor).findOne({
+    const student = await AppDataSource.getRepository(Aluno).findOne({
       where: { id: id },
     });
 
-    if (!teacher) {
+    if (!student) {
       return new RepositoryError(
         "Nenhum registro encontrado",
         ERepositoryErrors.NOT_FOUND
       );
     }
 
-    return teacher;
+    return student;
   } catch (error) {
     return new RepositoryError(
-      "Ocorreu um erro ao buscar os dados do(a) professor(a)",
+      "Ocorreu um erro ao buscar os dados do(a) aluno(a)",
       ERepositoryErrors.DATABASE_ERROR
     );
   }

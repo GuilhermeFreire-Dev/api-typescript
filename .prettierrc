@@ -1,0 +1,6 @@
+{
+  "printWidth": 80,
+  "semi": true,
+  "quoteProps": "as-needed",
+  "tabWidth": 2
+}

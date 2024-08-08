@@ -3,18 +3,18 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../../shared/exceptions/RepositoryError";
-import { Professor } from "../../entities/Professor.entity";
+import { Aluno } from "../../entities/Aluno.entity";
 
 export const getAll = async (
   filter?: string,
   page = 0,
   limit = 10
-): Promise<Professor[] | RepositoryError> => {
+): Promise<Aluno[] | RepositoryError> => {
   try {
-    let teachers: Professor[] = [];
+    let students: Aluno[] = [];
 
     if (filter) {
-      teachers = await AppDataSource.getRepository(Professor)
+      students = await AppDataSource.getRepository(Aluno)
         .createQueryBuilder()
         .where("nome like :nome", { nome: `%${filter}%` })
         .orWhere("cpf = :cpf", { cpf: filter })
@@ -22,24 +22,24 @@ export const getAll = async (
         .offset(page)
         .getMany();
     } else {
-      teachers = await AppDataSource.getRepository(Professor)
+      students = await AppDataSource.getRepository(Aluno)
         .createQueryBuilder()
         .limit(limit)
         .offset(page)
         .getMany();
     }
 
-    if (teachers.length === 0) {
+    if (students.length === 0) {
       return new RepositoryError(
         "Nenhum registro encontrado",
         ERepositoryErrors.NOT_FOUND
       );
     }
 
-    return teachers;
+    return students;
   } catch (error) {
     return new RepositoryError(
-      "Ocorreu um erro ao buscar os dados do(a) professor(a)",
+      "Ocorreu um erro ao buscar os dados do(a) aluno(a)",
       ERepositoryErrors.DATABASE_ERROR
     );
   }

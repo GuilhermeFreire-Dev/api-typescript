@@ -1,21 +1,25 @@
 import { AppDataSource } from "../..";
-import { ERepositoryErrors, RepositoryError } from "../../../shared/exceptions/RepositoryError";
+import {
+  ERepositoryErrors,
+  RepositoryError,
+} from "../../../shared/exceptions/RepositoryError";
 import { Aluno } from "../../entities/Aluno.entity";
 
-export const create = async (student: Omit<Aluno, "id">): Promise<Aluno | RepositoryError> => {
+export const create = async (
+  aluno: Omit<Aluno, "id">
+): Promise<Aluno | RepositoryError> => {
   try {
-    return await AppDataSource.getRepository(Aluno).save(student);
-    
+    return await AppDataSource.getRepository(Aluno).save(aluno);
   } catch (error) {
     const err = error as Error;
     if (err.message.includes("unique")) {
       return new RepositoryError(
-        "O CPF informado já está vinculado a um outro cadastro",
+        "Aluno(a) já cadastrado na base de dados",
         ERepositoryErrors.DATABASE_CONSTRAINT_ERROR
       );
-    }  
+    }
     return new RepositoryError(
-      "Ocorreu um erro ao cadastrar o usuário", 
+      "Ocorreu um erro ao cadastrar o aluno(a)",
       ERepositoryErrors.DATABASE_ERROR
     );
   }
