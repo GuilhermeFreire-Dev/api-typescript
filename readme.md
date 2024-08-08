@@ -56,6 +56,6 @@ Neste projeto foi utilizada a seguinte estrutura:
 Os conceitos, tecnologias e estrutura foram baseados no curso de "Construção de APIs REST utilizando Node e TypeScript" do canal **Lucas Souza Dev**.
 
 🎬[Canal do YouTube](https://www.youtube.com/@LucasSouzaDev)
-🎬[Playlist do curso](https://youtube.com/playlist?list=PL29TaWXah3iaaXDFPgTHiFMBF6wQahurP&si=EfeqL5bkWtbTFcnY)
+🎬[Playlist do curso](https://youtube.com/playlist?list=PL29TaWXah3iaaXDFPgTHiFMBF6wQahurP&si=EfeqL5bkWtbTFcnY) 
 
 
