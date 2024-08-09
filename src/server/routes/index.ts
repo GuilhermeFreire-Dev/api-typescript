@@ -4,6 +4,7 @@ import { authentication } from "../shared/middleware";
 import { UserController } from "../controllers/usuario";
 import { StudentController } from "../controllers/aluno";
 import { TeacherController } from "../controllers/professor";
+import { DisciplineController } from "../controllers/disciplina";
 
 const router = Router();
 
@@ -99,6 +100,31 @@ router.post(
   UserController.createValidation,
   UserController.create
 );
+
+router.get(
+  "/disciplinas",
+  DisciplineController.getAllValidation,
+  DisciplineController.getAll
+);
+
+router.post(
+  "/disciplinas",
+  DisciplineController.createValidation,
+  DisciplineController.create
+);
+
+router.put(
+  "/disciplinas/:id",
+  DisciplineController.updateValidation,
+  DisciplineController.update
+);
+
+router.delete(
+  "/disciplinas/:id",
+  DisciplineController.deleteByIdValidation,
+  DisciplineController.deleteById
+);
+
 router.post("/login", UserController.loginValidation, UserController.login);
 
 export { router };

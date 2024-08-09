@@ -13,7 +13,7 @@ export const getById = async (id: number): Promise<Aluno | RepositoryError> => {
 
     if (!student) {
       return new RepositoryError(
-        "Nenhum registro encontrado",
+        "Aluno(a) não encontrado(a)",
         ERepositoryErrors.NOT_FOUND
       );
     }

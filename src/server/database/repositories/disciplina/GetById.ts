@@ -15,7 +15,7 @@ export const getById = async (
 
     if (!teacher) {
       return new RepositoryError(
-        "Professor(a) não encontrado(a)",
+        "Nenhum registro encontrado",
         ERepositoryErrors.NOT_FOUND
       );
     }
