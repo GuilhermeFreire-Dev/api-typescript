@@ -6,7 +6,7 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { TeacherRepository } from "../../database/repositories/professor";
+import { DisciplineRepository } from "../../database/repositories/disciplina";
 
 interface IParamProps {
   id?: number;
@@ -21,21 +21,21 @@ export const getByIdIdValidation = validation((getSchema) => ({
 }));
 
 export const getByIdId = async (req: Request<IParamProps>, res: Response) => {
-  const teacher = await TeacherRepository.getById(req.params.id!);
+  const discipline = await DisciplineRepository.getById(req.params.id!);
 
-  if (teacher instanceof RepositoryError) {
+  if (discipline instanceof RepositoryError) {
     return res
       .status(
-        teacher.errorType === ERepositoryErrors.DATABASE_ERROR
+        discipline.errorType === ERepositoryErrors.DATABASE_ERROR
           ? StatusCodes.INTERNAL_SERVER_ERROR
           : StatusCodes.NOT_FOUND
       )
       .json({
         errors: {
-          default: teacher.message,
+          default: discipline.message,
         },
       });
   }
 
-  return res.status(StatusCodes.OK).json(teacher);
+  return res.status(StatusCodes.OK).json(discipline);
 };

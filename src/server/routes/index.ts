@@ -125,6 +125,12 @@ router.delete(
   DisciplineController.deleteById
 );
 
+router.get(
+  "/disciplinas/:id",
+  DisciplineController.getByIdIdValidation,
+  DisciplineController.getByIdId
+);
+
 router.post("/login", UserController.loginValidation, UserController.login);
 
 export { router };
