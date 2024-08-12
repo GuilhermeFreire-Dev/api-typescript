@@ -6,10 +6,12 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { TeacherRepository } from "../../database/repositories/professor";
 import { Disciplina } from "../../database/entities/Disciplina.entity";
-import { DisciplineRepository } from "../../database/repositories/disciplina";
 import { EStatus } from "../../database/entities/Pessoa.entity";
+import {
+  DisciplineRepository,
+  TeacherRepository,
+} from "../../database/repositories";
 
 interface IBodyProps extends Omit<Disciplina, "id" | "professor" | "status"> {
   professorId: number;

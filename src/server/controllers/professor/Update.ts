@@ -7,7 +7,7 @@ import {
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
 import { Professor } from "../../database/entities/Professor.entity";
-import { TeacherRepository } from "../../database/repositories/professor";
+import { TeacherRepository } from "../../database/repositories";
 
 interface IParamProps {
   id?: number;

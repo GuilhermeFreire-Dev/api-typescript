@@ -1,31 +1,38 @@
-import { 
-  Column, 
-  CreateDateColumn, 
-  Entity, 
-  JoinTable, 
-  ManyToMany, 
-  ManyToOne, 
-  OneToMany, 
-  PrimaryGeneratedColumn, 
-  UpdateDateColumn 
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
-import { Turno } from "./Turno.entity";
-import { Nivel } from "./Nivel.entity";
 import { Disciplina } from "./Disciplina.entity";
 import { Nota } from "./Nota.entity";
 import { Frequencia } from "./Frequencia.entity";
 
+export enum ETurno {
+  MATUTINO = "matutino",
+  VESPERTINO = "vespertino",
+  NOTURNO = "noturno",
+}
+
+export enum ENivel {
+  FUNDAMENTAL = "fundamental",
+  MEDIO = "medio",
+}
+
 @Entity()
 export class Turma {
-
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => Nivel, (nivel) => nivel.turmas)
-  nivel?: Nivel;
+  @Column({ type: "enum", enum: ENivel })
+  nivel!: ENivel;
 
-  @ManyToOne(() => Turno, (turno) => turno.turmas)
-  turno?: Turno;
+  @Column({ type: "enum", enum: ETurno })
+  turno!: ETurno;
 
   @ManyToMany(() => Disciplina)
   @JoinTable()

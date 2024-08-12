@@ -6,9 +6,8 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { UserRepository } from "../../database/repositories";
 import { Professor } from "../../database/entities/Professor.entity";
-import { TeacherRepository } from "../../database/repositories/professor";
+import { TeacherRepository, UserRepository } from "../../database/repositories";
 
 interface IBodyProps extends Omit<Professor, "id"> {}
 

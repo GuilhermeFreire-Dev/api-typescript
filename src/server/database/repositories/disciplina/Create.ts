@@ -19,7 +19,7 @@ export const create = async (
       );
     }
     return new RepositoryError(
-      "Ocorreu um erro ao cadastrar o disciplina",
+      "Ocorreu um erro ao cadastrar a disciplina",
       ERepositoryErrors.DATABASE_ERROR
     );
   }

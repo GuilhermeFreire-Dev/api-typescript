@@ -6,7 +6,7 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { DisciplineRepository } from "../../database/repositories/disciplina";
+import { DisciplineRepository } from "../../database/repositories";
 
 interface IQueryProps {
   filter?: string;

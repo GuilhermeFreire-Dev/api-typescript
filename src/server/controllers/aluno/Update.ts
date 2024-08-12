@@ -7,7 +7,7 @@ import {
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
 import { Aluno } from "../../database/entities/Aluno.entity";
-import { StudentRepository } from "../../database/repositories/aluno";
+import { StudentRepository } from "../../database/repositories";
 
 interface IParamProps {
   id?: number;

@@ -6,10 +6,12 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { UserRepository } from "../../database/repositories";
-import { TeacherRepository } from "../../database/repositories/professor";
 import { Aluno } from "../../database/entities/Aluno.entity";
-import { StudentRepository } from "../../database/repositories/aluno";
+import {
+  StudentRepository,
+  TeacherRepository,
+  UserRepository,
+} from "../../database/repositories";
 
 interface IBodyProps extends Omit<Aluno, "id"> {}
 

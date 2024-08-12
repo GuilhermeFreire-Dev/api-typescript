@@ -6,7 +6,7 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { TeacherRepository } from "../../database/repositories/professor";
+import { TeacherRepository } from "../../database/repositories";
 
 interface IParamProps {
   id?: number;

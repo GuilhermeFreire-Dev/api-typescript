@@ -6,7 +6,7 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { StudentRepository } from "../../database/repositories/aluno";
+import { StudentRepository } from "../../database/repositories";
 
 interface IQueryProps {
   filter?: string;

@@ -6,9 +6,11 @@ import {
   ERepositoryErrors,
   RepositoryError,
 } from "../../shared/exceptions/RepositoryError";
-import { TeacherRepository } from "../../database/repositories/professor";
 import { EStatus } from "../../database/entities/Pessoa.entity";
-import { DisciplineRepository } from "../../database/repositories/disciplina";
+import {
+  DisciplineRepository,
+  TeacherRepository,
+} from "../../database/repositories";
 
 interface IParamProps {
   id?: number;
