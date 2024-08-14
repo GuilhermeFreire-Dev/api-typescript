@@ -5,6 +5,7 @@ import { UserController } from "../controllers/usuario";
 import { StudentController } from "../controllers/aluno";
 import { TeacherController } from "../controllers/professor";
 import { DisciplineController } from "../controllers/disciplina";
+import { TeamController } from "../controllers/turma";
 
 const router = Router();
 
@@ -129,6 +130,29 @@ router.get(
   "/disciplinas/:id",
   DisciplineController.getByIdIdValidation,
   DisciplineController.getByIdId
+);
+
+router.get("/turmas", TeamController.getAllValidation, TeamController.getAll);
+router.post("/turmas", TeamController.createValidation, TeamController.create);
+router.delete(
+  "/turmas/:id",
+  TeamController.deleteByIdValidation,
+  TeamController.deleteById
+);
+router.delete(
+  "/turmas/:id/disciplina/:discipline",
+  TeamController.deleteDisciplineByIdValidation,
+  TeamController.deleteDisciplineById
+);
+router.get(
+  "/turmas/:id",
+  TeamController.getByIdIdValidation,
+  TeamController.getByIdId
+);
+router.put(
+  "/turmas/:id",
+  TeamController.updateValidation,
+  TeamController.update
 );
 
 router.post("/login", UserController.loginValidation, UserController.login);

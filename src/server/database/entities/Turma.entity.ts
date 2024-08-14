@@ -23,6 +23,11 @@ export enum ENivel {
   MEDIO = "medio",
 }
 
+export enum ETurmaStatus {
+  ATIVA = "ativa",
+  INATIVA = "inativa",
+}
+
 @Entity()
 export class Turma {
   @PrimaryGeneratedColumn()
@@ -55,6 +60,9 @@ export class Turma {
 
   @Column({ default: 1 })
   freqMin!: number;
+
+  @Column({ type: "enum", enum: ETurmaStatus, default: ETurmaStatus.ATIVA })
+  status!: ETurmaStatus;
 
   @CreateDateColumn()
   dataCria?: Date;
